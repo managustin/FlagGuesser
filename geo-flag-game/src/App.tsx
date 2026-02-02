@@ -128,7 +128,7 @@ function App() {
     // Esperar 5 segundos antes de la siguiente bandera
     feedbackTimeoutRef.current = setTimeout(() => {
       nextRound();
-    }, 4000);
+    }, 3200);
   };
 
   // --- RENDERIZADO ---
