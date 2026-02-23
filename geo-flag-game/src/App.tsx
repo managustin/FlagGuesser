@@ -4,11 +4,11 @@ import { countries, type Country } from './data/countries';
 import leavenstein from 'fast-levenshtein';
 
 // --- CONFIGURACIÓN ---
-const GAME_MODES = {
-  easy: { count: 20, label: 'Fácil' },
-  medium: { count: 50, label: 'Intermedio' },
-  hard: { count: 100, label: 'Avanzado' },
-  expert: { count: countries.length, label: 'Experto' },
+const GAME_MODES_CONFIG = {
+  easy: { count: 20, labelEs: 'Fácil', labelEn: 'Easy' },
+  medium: { count: 50, labelEs: 'Intermedio', labelEn: 'Medium' },
+  hard: { count: 100, labelEs: 'Avanzado', labelEn: 'Hard' },
+  expert: { count: countries.length, labelEs: 'Experto', labelEn: 'Expert' },
 };
 
 const INITIAL_TIME = 20;
@@ -52,8 +52,8 @@ function App() {
 
   // --- FUNCIONES DEL JUEGO ---
 
-  const startGame = (modeKey: keyof typeof GAME_MODES) => {
-    const count = GAME_MODES[modeKey].count;
+  const startGame = (modeKey: keyof typeof GAME_MODES_CONFIG) => {
+    const count = GAME_MODES_CONFIG[modeKey].count;
     // Mezclar y recortar array
     const shuffled = [...countries].sort(() => 0.5 - Math.random()).slice(0, count);
     
@@ -177,15 +177,15 @@ function App() {
               {language === 'es' ? 'Elige la dificultad' : 'Choose difficulty'}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {(Object.keys(GAME_MODES) as Array<keyof typeof GAME_MODES>).map((mode) => (
+              {(Object.keys(GAME_MODES_CONFIG) as Array<keyof typeof GAME_MODES_CONFIG>).map((mode) => (
                 <button
                   key={mode}
                   onClick={() => startGame(mode)}
                   className="p-6 rounded-xl bg-english-violet hover:bg-[#4a3e60] transition transform hover:-translate-y-1 border border-white/5 shadow-lg group"
                 >
-                  <h3 className="text-xl font-bold mb-1">{GAME_MODES[mode].label}</h3>
+                  <h3 className="text-xl font-bold mb-1">{language === 'es' ? GAME_MODES_CONFIG[mode].labelEs : GAME_MODES_CONFIG[mode].labelEn}</h3>
                   <p className="text-white/60 text-sm">
-                    {GAME_MODES[mode].count} {language === 'es' ? 'Banderas' : 'Flags'}
+                    {GAME_MODES_CONFIG[mode].count} {language === 'es' ? 'Banderas' : 'Flags'}
                   </p>
                 </button>
               ))}

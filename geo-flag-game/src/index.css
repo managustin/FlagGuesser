@@ -1,5 +1,6 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+@import "tailwindcss";
+
 @theme {
   --color-dark-bg: #3d3d3d;
   --color-english-violet: #39304a;
